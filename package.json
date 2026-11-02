@@ -1,0 +1,10 @@
+{
+  "name": "nodos-curvatura-invertida",
+  "version": "0.1.0",
+  "description": "Modelo de juguete de Friedmann: ¿los nodos frenan o empujan la expansión?",
+  "private": true,
+  "license": "MIT",
+  "scripts": {
+    "test": "node --test"
+  }
+}

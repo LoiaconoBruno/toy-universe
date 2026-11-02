@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nodos de curvatura invertida</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .formula { font-family: var(--mono); font-size: 0.85rem; background: var(--surface-2); padding: 8px 10px; border-radius: 8px; overflow-x: auto; }
+    .escenarios { display: grid; gap: 6px; }
+    .escenarios button { text-align: left; }
+    .escenarios button.activo { border-color: var(--accent); color: var(--accent); }
+  </style>
+</head>
+<body>
+  <header class="top">
+    <h1>Nodos de curvatura invertida</h1>
+    <p>¿Unos "nodos" ultradensos con presión negativa frenarían la expansión del universo o la empujarían? Un modelo de juguete de Friedmann para resolver la contradicción antes de escribir la idea.</p>
+  </header>
+
+  <main>
+    <div class="layout">
+      <section class="card" aria-labelledby="t-esc">
+        <h2 id="t-esc">Escenarios</h2>
+        <div class="escenarios" id="escenarios"></div>
+        <h3>Contenido del universo hoy</h3>
+        <div id="sliders"></div>
+      </section>
+
+      <div style="display:grid; gap:16px; min-width:0">
+        <section class="card" aria-live="polite">
+          <h2>Resultado</h2>
+          <div class="stats">
+            <div class="stat"><div class="k">Los nodos</div><div class="v" id="s-nodos">—</div></div>
+            <div class="stat"><div class="k">¿La expansión se acelera hoy?</div><div class="v" id="s-acelera">—</div></div>
+            <div class="stat"><div class="k">Edad del universo</div><div class="v" id="s-edad">—</div></div>
+            <div class="stat"><div class="k">Destino</div><div class="v" id="s-destino">—</div></div>
+          </div>
+          <p class="small muted" id="txt-res"></p>
+        </section>
+
+        <section class="card">
+          <h2>Tamaño del universo en el tiempo</h2>
+          <canvas id="g-a" aria-label="Factor de escala contra tiempo, comparado con el universo de hoy"></canvas>
+        </section>
+
+        <section class="card">
+          <h2>La ecuación que decide</h2>
+          <p class="formula">ä/a = −(4πG/3) · Σ (ρ + 3p/c²)</p>
+          <p class="small">Cada componente suma atracción en proporción a su densidad más tres veces su presión. Si la presión es negativa y supera un tercio de la densidad (w &lt; −1/3), su aporte cambia de signo y <b>empuja</b>. Por eso la presión negativa no puede "contrarrestar" la expansión: la acelera, igual que la energía oscura. Para <b>frenar</b> hace falta más atracción, por ejemplo presión positiva (w &gt; −1/3).</p>
+          <p class="small muted">Si los nodos fueran agujeros negros cuya masa crece con la expansión como a<sup>k</sup> (la propuesta de Farrah y otros, 2023), su densidad iría como a<sup>k−3</sup>, que equivale a w = −k/3. Con k = 3 se comportan como una constante cosmológica.</p>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <footer>Modelo de juguete: universo homogéneo, nodos como un fluido más. No reemplaza un ajuste a datos reales. Edades calculadas con H₀ = 70 km/s/Mpc.</footer>
+
+  <script src="src/grafico.js"></script>
+  <script src="src/cosmos.js"></script>
+  <script src="src/app.js"></script>
+</body>
+</html>
