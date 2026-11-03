@@ -1,10 +1,16 @@
 {
-  "name": "nodos-curvatura-invertida",
+  "name": "toy-universe",
   "version": "0.1.0",
-  "description": "Modelo de juguete de Friedmann: ¿los nodos frenan o empujan la expansión?",
+  "description": "Modelo de juguete de Friedmann: ¿una componente con presión negativa frena o acelera la expansión?",
   "private": true,
   "license": "MIT",
   "scripts": {
     "test": "node --test"
-  }
+  },
+  "homepage": "https://loiaconobruno.github.io/toy-universe/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LoiaconoBruno/toy-universe.git"
+  },
+  "author": "Bruno Loiacono"
 }
