@@ -4,7 +4,7 @@
 
 **Nodos de curvatura invertida.** Un modelo de juguete de Friedmann para responder una pregunta concreta: ¿la presión negativa frena la expansión del universo o la acelera?
 
-[**▶ Probala en vivo**](https://loiaconobruno.github.io/toy-universe/) · [Cómo funciona](#cómo-funciona) · [Limitaciones](#limitaciones)
+[**▶ Probala en vivo**](https://loiaconobruno.github.io/toy-universe/) · [**📄 Paper y guía**](https://loiaconobruno.github.io/toy-universe/guia.html) · [Cómo funciona](#cómo-funciona) · [Limitaciones](#limitaciones)
 
 [![Tests](https://github.com/LoiaconoBruno/toy-universe/actions/workflows/tests.yml/badge.svg)](https://github.com/LoiaconoBruno/toy-universe/actions/workflows/tests.yml)
 ![Dependencias: 0](https://img.shields.io/badge/dependencias-0-brightgreen)
@@ -85,6 +85,10 @@ npm test
 - Agregar una w que cambie con el tiempo (como sugieren los resultados de DESI) y una retroalimentación explícita.
 - Elegir la versión A o B y escribir el esbozo en una página.
 - Leer sobre las gravastars (Mazur y Mottola, 2001) y la propuesta de Farrah y otros (2023).
+
+## Paper de uso y guía
+
+[`guia.html`](https://loiaconobruno.github.io/toy-universe/guia.html) (fuente en [`docs/guia.md`](docs/guia.md)) tiene un paper de uso paso a paso y una guía de unas 20 páginas sobre la idea de fondo, con citas a los especialistas del tema.
 
 ## Licencia
 
