@@ -350,7 +350,49 @@ Hoy, con ȧ = 1 y a = 1, queda q₀ = (1/2) Σ Ωᵢ (1 + 3wᵢ). La función `d
 
 Para un universo de solo materia y plano (el modelo de Einstein-de Sitter, 1932), la edad es exactamente 2/(3H₀) ≈ 9,3 mil millones de años, y q₀ = 1/2. Uno de los tests de la herramienta lo verifica. Ese valor fue un problema en los años noventa: era menor que las edades estimadas de las estrellas más viejas. La constante cosmológica lo resolvió: una expansión que se acelera hoy frenó menos en el pasado, y el universo es más viejo.
 
-### 19. Del modelo al código
+### 19. Cómo se mide lo que la herramienta supone
+
+La herramienta da por conocidos tres números: la constante de Hubble (70 km/s/Mpc), la proporción de materia (30 %) y la de energía oscura (70 %). Cada uno es el resultado de décadas de mediciones, y uno de ellos está hoy en discusión.
+
+#### 19.1 Candelas estándar que no lo eran del todo
+
+Las supernovas de tipo Ia, que revelaron la aceleración (sección 14), no tienen todas el mismo brillo máximo: varían en un factor de dos o tres. Lo que las hizo útiles fue un descubrimiento de Mark Phillips en 1993 (*Astrophysical Journal Letters*, 413, L105–L108): las supernovas más brillantes se apagan más lentamente. Midiendo cuánto tarda en decaer el brillo, se puede corregir el brillo máximo y convertir cada supernova en una **candela estandarizable**, con una precisión de alrededor del 7 % en la distancia. Sin la relación de Phillips, los equipos de Riess, Schmidt y Perlmutter no habrían podido detectar la aceleración.
+
+#### 19.2 Una regla en el cielo
+
+La segunda medición clave es una regla, no una candela. En el universo temprano, el plasma de fotones y bariones vibraba con ondas de sonido. Cuando el universo se volvió transparente, unos 380 000 años después del big bang, esas ondas quedaron congeladas, dejando una distancia preferida entre concentraciones de materia: unos 150 megapársecs en el universo actual. Esa distancia, la escala de las **oscilaciones acústicas de bariones** (BAO), se detectó por primera vez en 2005 en la distribución de galaxias, casi simultáneamente por Daniel Eisenstein y colaboradores con el relevamiento SDSS (*Astrophysical Journal*, 633(2), 560–574) y por Shaun Cole y colaboradores con el relevamiento 2dFGRS (*Monthly Notices of the Royal Astronomical Society*, 362(2), 505–534). Midiendo el tamaño aparente de esa regla a distintas distancias se reconstruye la historia de la expansión, de manera independiente de las supernovas. Es lo que hace DESI (sección 14.3) con millones de galaxias.
+
+#### 19.3 La tensión de Hubble
+
+Hay dos maneras de medir la constante de Hubble. La **local** usa una escalera de distancias: cefeidas en galaxias cercanas calibran supernovas, y las supernovas miden la expansión. El equipo SH0ES, liderado por Adam Riess, obtuvo en 2022 un valor de 73,0 ± 1,0 km/s/Mpc (*Astrophysical Journal Letters*, 934, L7). La **temprana** usa el fondo cósmico de microondas y el modelo ΛCDM para inferir cuánto debería valer hoy: Planck obtuvo 67,4 ± 0,5. La diferencia, de unas cinco desviaciones estándar, es la **tensión de Hubble**, uno de los problemas abiertos más discutidos de la cosmología. Puede deberse a errores sistemáticos en alguna de las mediciones o a física que ΛCDM no incluye; entre las propuestas hay, justamente, formas de energía oscura distintas de una constante cosmológica.
+
+La herramienta usa H₀ = 70, un valor intermedio. La elección importa para las edades: como la edad escala con 1/H₀, la edad del universo ΛCDM de la herramienta (0,964/H₀) sería de unos 14,0 mil millones de años con H₀ = 67,4, de 13,5 con 70 y de 12,9 con 73. La tensión de Hubble es, en parte, una tensión sobre la edad del universo, y por lo tanto sobre qué universos son compatibles con las estrellas más viejas (sección 17.2).
+
+### 20. Los destinos posibles del universo
+
+La herramienta informa un "destino" (sigue expandiéndose, recolapsa, se queda quieto) dentro de un horizonte de 4/H₀. Con w como parámetro libre, los destinos posibles son más variados, y la herramienta permite ver uno muy extremo.
+
+#### 20.1 El gran congelamiento
+
+En ΛCDM, la expansión se acelera para siempre y tiende a una exponencial. Las galaxias que no están ligadas gravitatoriamente a la nuestra se alejan cada vez más rápido y, en algunos cientos de miles de millones de años, salen de nuestro horizonte observable. Las estrellas se apagan, los restos se enfrían y el universo tiende a un estado frío, oscuro y casi vacío: el **gran congelamiento**, o muerte térmica. Fred Adams y Gregory Laughlin describieron esta cronología del futuro lejano en *Reviews of Modern Physics* (69(2), 337–372, 1997).
+
+#### 20.2 El gran colapso
+
+Si la materia (o algo con w > −1/3) dominara y el universo fuera cerrado, la expansión se frenaría, se detendría y se invertiría: el **gran colapso**. La herramienta lo muestra con mucha materia y curvatura positiva (sección 8.2, paso 4). Con las mediciones actuales (energía oscura dominante, universo plano), este destino está descartado salvo que la energía oscura cambie de signo en el futuro.
+
+#### 20.3 El gran desgarro
+
+Con energía fantasma (w < −1), la densidad de la energía oscura **crece** con la expansión, y el ritmo de expansión diverge en un tiempo finito. Robert Caldwell, Marc Kamionkowski y Nevin Weinberg calcularon en 2003 (sección 8.1) que el tiempo que falta hasta ese **gran desgarro** es aproximadamente
+
+$$ t_desgarro − t_0 ≈ (2/3) · |1 + w|⁻¹ · H₀⁻¹ · (1 − Ωm)^(−1/2) $$
+
+Con w = −1,5 y Ωm = 0,3, eso da unos 1,59/H₀, unos 22 mil millones de años. Antes del final, la expansión acelerada vencería sucesivamente a todo lo que está ligado: primero los cúmulos de galaxias, después la Vía Láctea, el Sistema Solar, la Tierra y, en los últimos instantes, los átomos.
+
+La herramienta permite verlo: en el escenario A con w = −1,5, la curva del tamaño del universo se dispara y la integración se detiene, por el tope numérico, cerca de t = 1,55/H₀, muy cerca del tiempo que da la fórmula. Con w = −1,2, el desgarro llegaría a unos 4/H₀ (56 mil millones de años), y la integración se detiene en 3,86/H₀. Es un buen ejemplo de cómo un modelo de juguete reproduce un resultado publicado.
+
+Los datos actuales son compatibles con w = −1 y con valores levemente distintos, en las dos direcciones. Si DESI y sus sucesores confirmaran una energía oscura que evoluciona, la pregunta por el destino del universo volvería a estar abierta. Para la idea de los nodos, eso significa que la versión A, en la que los nodos son la energía oscura, tiene consecuencias que van mucho más allá de la expansión actual: la naturaleza de los nodos decidiría el final de todo.
+
+### 21. Del modelo al código
 
 | Concepto | Función en `src/cosmos.js` | Qué produce |
 |---|---|---|
@@ -373,7 +415,7 @@ r.edad * C.H0_GYR;            // ≈ 13,5 mil millones de años
 C.efecto(-0.2);               // "frena"
 ```
 
-### 20. Ejercicios
+### 22. Ejercicios
 
 1. Con solo materia y Λ, plano, ¿para qué Ωm la expansión hoy no se acelera ni frena (q₀ = 0)? Comprobalo con los deslizadores.
 2. Calculá a mano la edad de un universo plano de solo radiación. (Pista: a ∝ t^(1/2).)
@@ -383,7 +425,7 @@ C.efecto(-0.2);               // "frena"
 6. Si los nodos tuvieran k = 1,5 en M ∝ a^k, ¿qué w tendrían? ¿Empujarían o frenarían?
 7. Escribí en un párrafo la versión A de la idea como premisa de un cuento de ciencia ficción dura, respetando la física de la sección 13.
 
-### 21. Glosario
+### 23. Glosario
 
 - **Factor de escala a:** cuánto se estiraron las distancias cósmicas respecto de hoy.
 - **Constante de Hubble H₀:** ritmo de expansión actual; 1/H₀ es la escala de tiempo cosmológica.
@@ -397,7 +439,7 @@ C.efecto(-0.2);               // "frena"
 - **Gravastar:** objeto compacto hipotético con interior de vacío y sin horizonte.
 - **Acoplamiento cosmológico:** hipótesis de que la masa de los agujeros negros crece con la expansión.
 
-### 22. Conclusión
+### 24. Conclusión
 
 La pregunta de la idea, si unos nodos ultradensos con presión negativa frenan o empujan la expansión, tiene una respuesta clara en la relatividad general: **empujan**. La presión gravita, y una presión más negativa que −1/3 de la densidad de energía convierte a la gravedad en repulsión. Es la razón de la aceleración cósmica que descubrieron Riess, Perlmutter y Schmidt, y es lo que haría cualquier componente con w < −1/3, sean nodos, campos o agujeros negros acoplados a la expansión.
 
@@ -405,6 +447,7 @@ La herramienta permite ver esto con números y explorar las alternativas: un uni
 
 ## Referencias
 
+- Adams, F. C., & Laughlin, G. (1997). A dying universe: The long-term fate and evolution of astrophysical objects. *Reviews of Modern Physics*, 69(2), 337–372. https://doi.org/10.1103/RevModPhys.69.337
 - Aghanim, N., et al. (Planck Collaboration). (2020). Planck 2018 results. VI. Cosmological parameters. *Astronomy & Astrophysics*, 641, A6. https://doi.org/10.1051/0004-6361/201833910
 - Andrae, R., & El-Badry, K. (2023). Constraints on the cosmological coupling of black holes from Gaia. *Astronomy & Astrophysics*, 673, L10. https://doi.org/10.1051/0004-6361/202346350
 - de Bernardis, P., et al. (2000). A flat Universe from high-resolution maps of the cosmic microwave background radiation. *Nature*, 404, 955–959. https://doi.org/10.1038/35010035
@@ -412,10 +455,11 @@ La herramienta permite ver esto con números y explorar las alternativas: un uni
 - Caldwell, R. R., Dave, R., & Steinhardt, P. J. (1998). Cosmological imprint of an energy component with general equation of state. *Physical Review Letters*, 80(8), 1582–1585. https://doi.org/10.1103/PhysRevLett.80.1582
 - Caldwell, R. R., Kamionkowski, M., & Weinberg, N. N. (2003). Phantom energy: Dark energy with w < −1 causes a cosmic doomsday. *Physical Review Letters*, 91(7), 071301. https://doi.org/10.1103/PhysRevLett.91.071301
 - Carroll, S. M. (2001). The cosmological constant. *Living Reviews in Relativity*, 4, 1. https://doi.org/10.12942/lrr-2001-1
+- Cole, S., et al. (2005). The 2dF Galaxy Redshift Survey: Power-spectrum analysis of the final data set and cosmological implications. *Monthly Notices of the Royal Astronomical Society*, 362(2), 505–534. https://doi.org/10.1111/j.1365-2966.2005.09318.x
 - Croker, K. S., & Weiner, J. L. (2019). Implications of symmetry and pressure in Friedmann cosmology. I. Formalism. *Astrophysical Journal*, 882(1), 19. https://doi.org/10.3847/1538-4357/ab32da
-- de Sitter, W. (1917). On Einstein's theory of gravitation and its astronomical consequences. Third paper. *Monthly Notices of the Royal Astronomical Society*, 78, 3–28. https://doi.org/10.1093/mnras/78.1.3
 - Eddington, A. S. (1930). On the instability of Einstein's spherical world. *Monthly Notices of the Royal Astronomical Society*, 90, 668–678. https://doi.org/10.1093/mnras/90.7.668
 - Einstein, A. (1917). Kosmologische Betrachtungen zur allgemeinen Relativitätstheorie. *Sitzungsberichte der Königlich Preußischen Akademie der Wissenschaften*, 142–152.
+- Eisenstein, D. J., et al. (2005). Detection of the baryon acoustic peak in the large-scale correlation function of SDSS luminous red galaxies. *Astrophysical Journal*, 633(2), 560–574. https://doi.org/10.1086/466512
 - Ellis, G. F. R., & Maartens, R. (2004). The emergent universe: Inflationary cosmology with no singularity. *Classical and Quantum Gravity*, 21(1), 223–232. https://doi.org/10.1088/0264-9381/21/1/015
 - Farrah, D., et al. (2023). Observational evidence for cosmological coupling of black holes and its implications for an astrophysical source of dark energy. *Astrophysical Journal Letters*, 944(2), L31. https://doi.org/10.3847/2041-8213/acb704
 - Friedmann, A. (1922). Über die Krümmung des Raumes. *Zeitschrift für Physik*, 10, 377–386. https://doi.org/10.1007/BF01332580
@@ -430,11 +474,14 @@ La herramienta permite ver esto con números y explorar las alternativas: un uni
 - Mazur, P. O., & Mottola, E. (2004). Gravitational vacuum condensate stars. *Proceedings of the National Academy of Sciences*, 101(26), 9545–9550. https://doi.org/10.1073/pnas.0402717101
 - Penzias, A. A., & Wilson, R. W. (1965). A measurement of excess antenna temperature at 4080 Mc/s. *Astrophysical Journal*, 142, 419–421. https://doi.org/10.1086/148307
 - Perlmutter, S., et al. (1999). Measurements of Ω and Λ from 42 high-redshift supernovae. *Astrophysical Journal*, 517(2), 565–586. https://doi.org/10.1086/307221
+- Phillips, M. M. (1993). The absolute magnitudes of Type Ia supernovae. *Astrophysical Journal Letters*, 413, L105–L108. https://doi.org/10.1086/186970
 - Ratra, B., & Peebles, P. J. E. (1988). Cosmological consequences of a rolling homogeneous scalar field. *Physical Review D*, 37(12), 3406–3427. https://doi.org/10.1103/PhysRevD.37.3406
 - Raychaudhuri, A. (1955). Relativistic cosmology. I. *Physical Review*, 98(4), 1123–1126. https://doi.org/10.1103/PhysRev.98.1123
 - Riess, A. G., et al. (1998). Observational evidence from supernovae for an accelerating universe and a cosmological constant. *Astronomical Journal*, 116(3), 1009–1038. https://doi.org/10.1086/300499
+- Riess, A. G., et al. (2022). A comprehensive measurement of the local value of the Hubble constant with 1 km s⁻¹ Mpc⁻¹ uncertainty from the Hubble Space Telescope and the SH0ES team. *Astrophysical Journal Letters*, 934(1), L7. https://doi.org/10.3847/2041-8213/ac5c5b
 - Runge, C. (1895). Über die numerische Auflösung von Differentialgleichungen. *Mathematische Annalen*, 46, 167–178. https://doi.org/10.1007/BF01446807
 - Ryden, B. (2017). *Introduction to Cosmology* (2.ª ed.). Cambridge University Press. ISBN 978-1-107-15483-4.
+- de Sitter, W. (1917). On Einstein's theory of gravitation and its astronomical consequences. Third paper. *Monthly Notices of the Royal Astronomical Society*, 78, 3–28. https://doi.org/10.1093/mnras/78.1.3
 - Starobinsky, A. A. (1980). A new type of isotropic cosmological models without singularity. *Physics Letters B*, 91(1), 99–102. https://doi.org/10.1016/0370-2693(80)90670-X
 - Weinberg, S. (1989). The cosmological constant problem. *Reviews of Modern Physics*, 61(1), 1–23. https://doi.org/10.1103/RevModPhys.61.1
 - Zel'dovich, Y. B. (1968). The cosmological constant and the theory of elementary particles. *Soviet Physics Uspekhi*, 11(3), 381–393. https://doi.org/10.1070/PU1968v011n03ABEH003927
