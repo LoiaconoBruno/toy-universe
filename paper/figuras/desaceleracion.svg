@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" width="640" height="400" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="13">
+<rect width="640" height="400" fill="#ffffff"/>
+<line x1="70" y1="40" x2="70" y2="344" stroke="#e3e1db"/>
+<text x="70" y="362" text-anchor="middle" fill="#333">−1,5</text>
+<line x1="180.4" y1="40" x2="180.4" y2="344" stroke="#e3e1db"/>
+<text x="180.4" y="362" text-anchor="middle" fill="#333">−1</text>
+<line x1="290.8" y1="40" x2="290.8" y2="344" stroke="#e3e1db"/>
+<text x="290.8" y="362" text-anchor="middle" fill="#333">−0,5</text>
+<line x1="401.2" y1="40" x2="401.2" y2="344" stroke="#e3e1db"/>
+<text x="401.2" y="362" text-anchor="middle" fill="#333">0</text>
+<line x1="511.6" y1="40" x2="511.6" y2="344" stroke="#e3e1db"/>
+<text x="511.6" y="362" text-anchor="middle" fill="#333">0,5</text>
+<line x1="622" y1="40" x2="622" y2="344" stroke="#e3e1db"/>
+<text x="622" y="362" text-anchor="middle" fill="#333">1</text>
+<line x1="70" y1="322.2857142857143" x2="622" y2="322.2857142857143" stroke="#e3e1db"/>
+<text x="62" y="326.2857142857143" text-anchor="end" fill="#333">−1</text>
+<line x1="70" y1="213.7142857142857" x2="622" y2="213.7142857142857" stroke="#e3e1db"/>
+<text x="62" y="217.7142857142857" text-anchor="end" fill="#333">0</text>
+<line x1="70" y1="105.14285714285711" x2="622" y2="105.14285714285711" stroke="#e3e1db"/>
+<text x="62" y="109.14285714285711" text-anchor="end" fill="#333">1</text>
+<rect x="70" y="40" width="552" height="304" fill="none" stroke="#333"/>
+<text x="346" y="386" text-anchor="middle" fill="#111">Ecuación de estado de los nodos, w</text>
+<text transform="translate(18 192) rotate(-90)" text-anchor="middle" fill="#111">Parámetro de desaceleración q₀</text>
+<clipPath id="area"><rect x="70" y="40" width="552" height="304"/></clipPath><g clip-path="url(#area)">
+<line x1="327.6" y1="40" x2="327.6" y2="344" stroke="#666" stroke-dasharray="4 4"/>
+<text x="332.6" y="56" fill="#444" font-size="12">w = −1/3</text>
+<line x1="296.0571428571428" y1="40" x2="296.0571428571428" y2="344" stroke="#666" stroke-dasharray="4 4"/>
+<text x="301.0571428571428" y="71" fill="#444" font-size="12">w ≈ −0,48</text>
+<line x1="70" y1="213.7142857142857" x2="622" y2="213.7142857142857" stroke="#666" stroke-dasharray="4 4"/>
+<text x="616" y="207.7142857142857" text-anchor="end" fill="#444" font-size="12">q₀ = 0</text>
+<path d="M70.00 330.43 L81.04 324.73 L92.08 319.03 L103.12 313.33 L114.16 307.63 L125.20 301.93 L136.24 296.23 L147.28 290.53 L158.32 284.83 L169.36 279.13 L180.40 273.43 L191.44 267.73 L202.48 262.03 L213.52 256.33 L224.56 250.63 L235.60 244.93 L246.64 239.23 L257.68 233.53 L268.72 227.83 L279.76 222.13 L290.80 216.43 L301.84 210.73 L312.88 205.03 L323.92 199.33 L334.96 193.63 L346.00 187.93 L357.04 182.23 L368.08 176.53 L379.12 170.83 L390.16 165.13 L401.20 159.43 L412.24 153.73 L423.28 148.03 L434.32 142.33 L445.36 136.63 L456.40 130.93 L467.44 125.23 L478.48 119.53 L489.52 113.83 L500.56 108.13 L511.60 102.43 L522.64 96.73 L533.68 91.03 L544.72 85.33 L555.76 79.63 L566.80 73.93 L577.84 68.23 L588.88 62.53 L599.92 56.83 L610.96 51.13 L622.00 45.43" fill="none" stroke="#2a55c9" stroke-width="2.2" stroke-linejoin="round"/>
+</g>
+<line x1="70" y1="24" x2="92" y2="24" stroke="#2a55c9" stroke-width="3"/>
+<text x="98" y="28" fill="#111">q₀ = [Ωm + Ωn (1 + 3w)] / 2</text>
+</svg>

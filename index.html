@@ -1,64 +1,199 @@
 <!doctype html>
 <html lang="es">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Nodos de curvatura invertida</title>
-  <link rel="stylesheet" href="styles.css">
-  <style>
-    .formula { font-family: var(--mono); font-size: 0.85rem; background: var(--surface-2); padding: 8px 10px; border-radius: 8px; overflow-x: auto; }
-    .escenarios { display: grid; gap: 6px; }
-    .escenarios button { text-align: left; }
-    .escenarios button.activo { border-color: var(--accent); color: var(--accent); }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Un universo de juguete: por qué unos nodos con presión negativa empujarían la expansión en lugar de frenarla</title>
+<meta name="description" content="Preprint de Bruno Loiacono (estudiante de Física, UBA): Un universo de juguete: por qué unos nodos con presión negativa empujarían la expansión en lugar de frenarla.">
+<style>
+:root{--bg:#f7f6f2;--surface:#fff;--text:#1d1c1a;--muted:#5b574f;--border:#d9d5cb;--accent:#2a55c9;--accent-text:#fff;--aviso:#fdf3e1;--aviso-borde:#c27a12;color-scheme:light}
+@media (prefers-color-scheme:dark){:root{--bg:#141416;--surface:#1d1d21;--text:#ecebe7;--muted:#a8a59f;--border:#36363c;--accent:#8fb0ff;--accent-text:#0d0d10;--aviso:#2a2216;--aviso-borde:#e0a54a;color-scheme:dark}}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font:18px/1.65 Georgia,"Iowan Old Style","Times New Roman",serif}
+.wrap{max-width:780px;margin:0 auto;padding:20px 16px 80px}
+.sans{font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.aviso{font:600 14px/1.4 system-ui,-apple-system,"Segoe UI",sans-serif;background:var(--aviso);border:1px solid var(--aviso-borde);border-radius:8px;padding:8px 12px;margin:0 0 18px}
+h1{font-size:2rem;line-height:1.2;margin:8px 0 6px}
+.en{color:var(--muted);font-style:italic;margin:0 0 10px}
+.autor{font:15px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--muted);margin:0 0 16px}
+.acciones{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 24px;font:15px system-ui,-apple-system,"Segoe UI",sans-serif}
+.boton{display:inline-flex;align-items:center;gap:6px;padding:9px 14px;border-radius:8px;border:1px solid var(--border);background:var(--surface);color:var(--text);text-decoration:none}
+.boton.primario{background:var(--accent);border-color:var(--accent);color:var(--accent-text);font-weight:600}
+.boton:focus-visible,a:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+a{color:var(--accent)}
+nav.toc{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:12px 16px;font:15px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif;margin:0 0 8px}
+nav.toc ul{margin:6px 0 0;padding:0;list-style:none}
+nav.toc li{margin:2px 0}
+h2{font-size:1.4rem;line-height:1.3;margin:44px 0 10px;padding-top:12px;border-top:1px solid var(--border)}
+h3{font-size:1.12rem;margin:28px 0 8px}
+h4{font-size:1rem;margin:22px 0 6px}
+.resumen{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:4px 18px 8px;margin:16px 0}
+.resumen h2{border:0;margin:12px 0 4px;padding:0;font-size:1.05rem}
+.clave{font-size:.95rem;color:var(--muted)}
+figure{margin:26px 0;padding:0}
+figure img{display:block;width:100%;height:auto;background:#fff;border:1px solid var(--border);border-radius:8px}
+figcaption{font-size:.92rem;color:var(--muted);margin-top:8px;line-height:1.5}
+.desliza{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font:15px/1.45 system-ui,-apple-system,"Segoe UI",sans-serif}
+th,td{text-align:left;padding:6px 8px;border-bottom:1px solid var(--border);vertical-align:top}
+thead th{border-bottom:2px solid var(--text)}
+.ecuacion{overflow-x:auto;overflow-y:hidden;margin:14px 0}
+mjx-container[display="true"]{overflow-x:auto;overflow-y:hidden}
+blockquote{margin:16px 0;padding:2px 16px;border-left:3px solid var(--border);color:var(--muted)}
+code{font:.9em ui-monospace,"SF Mono",Menlo,monospace;background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:0 4px}
+ol.refs{padding-left:20px;font-size:.95rem}
+ol.refs li{margin-bottom:8px;overflow-wrap:anywhere}
+footer{margin-top:48px;padding-top:14px;border-top:1px solid var(--border);font:14px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--muted)}
+pre{overflow-x:auto;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:10px 12px;font:13px/1.5 ui-monospace,"SF Mono",Menlo,monospace}
+@media (max-width:600px){body{font-size:17px}h1{font-size:1.6rem}}
+@media print{.acciones,nav.toc{display:none}}
+</style>
+<script>
+window.MathJax={tex:{inlineMath:[["$","$"]],displayMath:[["\\[","\\]"]],tags:"ams",processEnvironments:true,processRefs:true,macros:{}},chtml:{scale:1},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}};
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
 </head>
 <body>
-  <header class="top">
-    <h1>Nodos de curvatura invertida</h1>
-    <p>¿Unos "nodos" ultradensos con presión negativa frenarían la expansión del universo o la empujarían? Un modelo de juguete de Friedmann para resolver la contradicción antes de escribir la idea.</p>
-    <p class="guia-link"><a href="guia.html">📄 Paper de uso y guía de la idea →</a></p>
-  </header>
-
-  <main>
-    <div class="layout">
-      <section class="card" aria-labelledby="t-esc">
-        <h2 id="t-esc">Escenarios</h2>
-        <div class="escenarios" id="escenarios"></div>
-        <h3>Contenido del universo hoy</h3>
-        <div id="sliders"></div>
-      </section>
-
-      <div style="display:grid; gap:16px; min-width:0">
-        <section class="card" aria-live="polite">
-          <h2>Resultado</h2>
-          <div class="stats">
-            <div class="stat"><div class="k">Los nodos</div><div class="v" id="s-nodos">—</div></div>
-            <div class="stat"><div class="k">¿La expansión se acelera hoy?</div><div class="v" id="s-acelera">—</div></div>
-            <div class="stat"><div class="k">Edad del universo</div><div class="v" id="s-edad">—</div></div>
-            <div class="stat"><div class="k">Destino</div><div class="v" id="s-destino">—</div></div>
-          </div>
-          <p class="small muted" id="txt-res"></p>
-        </section>
-
-        <section class="card">
-          <h2>Tamaño del universo en el tiempo</h2>
-          <canvas id="g-a" aria-label="Factor de escala contra tiempo, comparado con el universo de hoy"></canvas>
-        </section>
-
-        <section class="card">
-          <h2>La ecuación que decide</h2>
-          <p class="formula">ä/a = −(4πG/3) · Σ (ρ + 3p/c²)</p>
-          <p class="small">Cada componente suma atracción en proporción a su densidad más tres veces su presión. Si la presión es negativa y supera un tercio de la densidad (w &lt; −1/3), su aporte cambia de signo y <b>empuja</b>. Por eso la presión negativa no puede "contrarrestar" la expansión: la acelera, igual que la energía oscura. Para <b>frenar</b> hace falta más atracción, por ejemplo presión positiva (w &gt; −1/3).</p>
-          <p class="small muted">Si los nodos fueran agujeros negros cuya masa crece con la expansión como a<sup>k</sup> (la propuesta de Farrah y otros, 2023), su densidad iría como a<sup>k−3</sup>, que equivale a w = −k/3. Con k = 3 se comportan como una constante cosmológica.</p>
-        </section>
-      </div>
-    </div>
-  </main>
-
-  <footer>Modelo de juguete: universo homogéneo, nodos como un fluido más. No reemplaza un ajuste a datos reales. Edades calculadas con H₀ = 70 km/s/Mpc.</footer>
-
-  <script src="src/grafico.js"></script>
-  <script src="src/cosmos.js"></script>
-  <script src="src/app.js"></script>
+<main class="wrap">
+<p class="aviso">Preprint · documento de trabajo sin revisión por pares</p>
+<h1>Un universo de juguete: por qué unos nodos con presión negativa empujarían la expansión en lugar de frenarla</h1>
+<p class="en" lang="en">A toy universe: why nodes with negative pressure would push the expansion instead of slowing it down</p>
+<p class="autor">Bruno Loiacono · Estudiante de Física, Universidad de Buenos Aires · Noviembre de 2026</p>
+<div class="acciones">
+<a class="boton primario" href="paper/paper.pdf" download>Descargar PDF</a>
+<a class="boton" href="https://github.com/LoiaconoBruno/toy-universe">Repositorio</a>
+<a class="boton" href="https://github.com/LoiaconoBruno/toy-universe#cómo-citarlo">Cómo citarlo</a>
+</div>
+<nav class="toc" aria-label="Índice"><strong>Índice</strong><ul><li><a href="#sec:intro">1. Introducción</a></li><li><a href="#sec:antecedentes">2. Antecedentes</a></li><li><a href="#sec:modelo">3. Modelo</a></li><li><a href="#sec:resultados">4. Resultados</a></li><li><a href="#sec:discusion">5. Discusión y limitaciones</a></li><li><a href="#sec:conclusiones">6. Conclusiones y trabajo futuro</a></li><li><a href="#declaración-de-uso-de-ia">Declaración de uso de IA</a></li><li><a href="#referencias">Referencias</a></li></ul></nav>
+<p></p>
+<section class="resumen"><h2 id="resumen">Resumen</h2><p>La idea que motiva este trabajo imaginaba un universo con «nodos»: zonas ultradensas con presión negativa que contrarrestarían la expansión. En relatividad general la presión también gravita, y la aceleración de la expansión depende de $\rho + 3p/c^2$: una componente con ecuación de estado $w = p/(\rho c^2) &lt; -1/3$ no frena la expansión sino que la acelera. Con un modelo de juguete de Friedmann, integrado numéricamente y chequeado contra soluciones analíticas, se muestra que nodos con $w = -1$ son indistinguibles de una constante cosmológica: con 30 % de materia dan $q_0 = -0{,}55$ y una edad de $0{,}964/H_0$, 13,5 mil millones de años para $H_0 = 70$ km/s/Mpc. Nodos con presión positiva ($w = 1/3$) frenarían, pero el universo tendría 7,4 mil millones de años, menos que sus estrellas más viejas. Un equilibrio estático a la Einstein existe pero es inestable, con perturbaciones que crecen como $\sinh\tau$. Se discuten las propuestas de gravastars y de agujeros negros acoplados a la expansión, que son la versión seria de la idea, y qué haría falta para un equilibrio estable.</p></section>
+<section class="resumen" lang="en"><h2 id="abstract">Abstract</h2><p>The idea behind this paper imagined a universe with “nodes”: ultradense regions with negative pressure that would counteract cosmic expansion. In general relativity pressure also gravitates, and the acceleration of the expansion depends on $\rho + 3p/c^2$: a component with equation of state $w = p/(\rho c^2) &lt; -1/3$ does not slow the expansion down but speeds it up. Using a toy Friedmann model, integrated numerically and checked against analytic solutions, nodes with $w = -1$ are shown to be indistinguishable from a cosmological constant: with 30% matter they give $q_0 = -0.55$ and an age of $0.964/H_0$, 13.5 billion years for $H_0 = 70$ km/s/Mpc. Nodes with positive pressure ($w = 1/3$) would decelerate, but the universe would be 7.4 billion years old, younger than its oldest stars. An Einstein-like static equilibrium exists but is unstable, with perturbations growing as $\sinh\tau$. Proposals of gravastars and of black holes coupled to the expansion, the serious version of the idea, are discussed, together with what a stable equilibrium would require.</p></section>
+<p class="clave"><strong>Palabras clave:</strong> ecuaciones de Friedmann; ecuación de estado; energía oscura; universo de Einstein; acoplamiento cosmológico; gran desgarro.</p>
+<p class="clave" lang="en"><strong>Keywords:</strong> Friedmann equations; equation of state; dark energy; Einstein universe; cosmological coupling; Big Rip.</p>
+<h2 id="sec:intro">1. Introducción</h2>
+<p>La idea original imaginaba un universo con «nodos»: zonas ultradensas, con algo parecido a una curvatura invertida y presión negativa, que contrarrestarían la expansión del universo. La intuición es razonable a primera vista: una presión negativa es una tensión, como la de una banda elástica estirada, y algo que «tira hacia adentro» debería frenar la expansión.</p>
+<p>La relatividad general dice lo contrario. En las ecuaciones de Friedmann, la fuente de la desaceleración no es solo la densidad de energía sino la combinación $\rho + 3p/c^2$. Una presión lo bastante negativa hace que esa combinación sea negativa, y entonces la gravedad se vuelve repulsiva: acelera la expansión. Es lo que hace la energía oscura. Los nodos, si tienen presión negativa, no frenarían el universo sino que lo empujarían.</p>
+<p>La sección <a href="#sec:antecedentes">2</a> resume la historia de la cosmología relativista que lleva a esa conclusión y las propuestas recientes que se parecen a los nodos. La sección <a href="#sec:modelo">3</a> escribe el modelo con unidades explícitas y deriva sus soluciones analíticas. La sección <a href="#sec:resultados">4</a> compara escenarios con nodos que empujan, nodos que frenan y el equilibrio de Einstein. La sección <a href="#sec:discusion">5</a> formula las versiones posibles de la idea y qué física haría falta para cada una.</p>
+<h2 id="sec:antecedentes">2. Antecedentes</h2>
+<h3 id="el-universo-de-einstein-y-su-inestabilidad">2.1. El universo de Einstein y su inestabilidad</h3>
+<p>En 1917, dos años después de formular la relatividad general, Einstein la aplicó al universo entero. Se creía que el universo era estático, y sus ecuaciones no admitían un universo estático lleno de materia: la gravedad lo haría colapsar. Para evitarlo agregó la <em>constante cosmológica</em> $\Lambda$, una repulsión uniforme que, con el valor justo, equilibra la atracción de la materia en un universo cerrado y quieto. El mismo año, de Sitter (<a href="#ref-desitter1917">1917</a>) encontró una solución sin materia y con $\Lambda$, que hoy describe una región llena de energía del vacío. Eddington (<a href="#ref-eddington1930">1930</a>) mostró que el equilibrio de Einstein es inestable, como un lápiz parado sobre la punta: si el universo se expande un poco, la densidad de materia baja y la repulsión gana; si se contrae, gana la atracción.</p>
+<h3 id="friedmann-lemaître-y-la-expansión">2.2. Friedmann, Lemaître y la expansión</h3>
+<p>Friedman (<a href="#ref-friedmann1922">1922</a>) encontró las soluciones de las ecuaciones de Einstein para un universo homogéneo e isótropo sin exigir que fuera estático: universos que se expanden, se contraen u oscilan según su contenido y su curvatura. Lemaître llegó a las mismas ecuaciones de manera independiente en 1927 y las conectó con las velocidades de alejamiento de las galaxias; su artículo se tradujo al inglés en 1931 (Lemaître <a href="#ref-lemaitre1931">1931</a>). Hubble (<a href="#ref-hubble1929">1929</a>) publicó la relación entre velocidad y distancia con sus propios datos. Penzias y Wilson (<a href="#ref-penzias1965">1965</a>) detectaron el fondo cósmico de microondas, el resto térmico del universo temprano.</p>
+<h3 id="por-qué-la-presión-gravita">2.3. Por qué la presión gravita</h3>
+<p>Raychaudhuri (<a href="#ref-raychaudhuri1955">1955</a>) derivó la ecuación que muestra que, si $\rho + 3p/c^2 &gt; 0$, los haces de geodésicas se enfocan. Hawking y Ellis (<a href="#ref-hawking1973">1973</a>) usaron esa condición, la <em>condición de energía fuerte</em>, en los teoremas de singularidad. La violan la energía del vacío y el campo que habría causado la <em>inflación</em> del universo temprano, propuesta por Starobinsky (<a href="#ref-starobinsky1980">1980</a>) y Guth (<a href="#ref-guth1981">1981</a>): una etapa de expansión acelerada con $w \approx -1$. Ryden (<a href="#ref-ryden2003">2003</a>) da el argumento termodinámico: cuando un volumen con presión negativa se expande, se hace trabajo sobre él y su energía aumenta, coherente con que la densidad del vacío no se diluya.</p>
+<h3 id="la-aceleración-cósmica">2.4. La aceleración cósmica</h3>
+<p>Riess et al. (<a href="#ref-riess1998">1998</a>) y Perlmutter et al. (<a href="#ref-perlmutter1999">1999</a>) usaron supernovas de tipo Ia, estandarizadas con la relación entre brillo máximo y ritmo de apagado de Phillips (<a href="#ref-phillips1993">1993</a>), y encontraron que las lejanas eran más débiles de lo esperado en un universo que frena: la expansión se acelera. Combinadas con la medición de la planitud del espacio en el fondo de microondas (de Bernardis et al. <a href="#ref-debernardis2000">2000</a>) y con la escala de las oscilaciones acústicas de bariones en la distribución de galaxias (Eisenstein et al. <a href="#ref-eisenstein2005">2005</a>; Cole et al. <a href="#ref-cole2005">2005</a>), dieron lugar al modelo $\Lambda$CDM. Los resultados de Planck (Planck Collaboration <a href="#ref-planck2020">2020</a>) dan un universo plano con $\Omega_{\mathrm m} \approx 0{,}315$ y una edad de 13,8 mil millones de años. Las mediciones de DESI (DESI Collaboration <a href="#ref-desi2025a">2025</a>; DESI Collaboration <a href="#ref-desi2025b">2025</a>), combinadas con supernovas y el fondo de microondas, muestran una preferencia moderada por una energía oscura cuya ecuación de estado cambia con el tiempo. La constante de Hubble medida localmente, $73{,}0 \pm 1{,}0$ km/s/Mpc según Riess et al. (<a href="#ref-riess2022">2022</a>), no coincide con la que infiere Planck, $67{,}4 \pm 0{,}5$: es la <em>tensión de Hubble</em>.</p>
+<h3 id="el-problema-de-la-constante-cosmológica">2.5. El problema de la constante cosmológica</h3>
+<p>Zel&#x27;dovich (<a href="#ref-zeldovich1968">1968</a>) señaló que la energía de punto cero de los campos cuánticos actúa como una constante cosmológica, con $w = -1$. El problema es su valor: una estimación ingenua da una densidad muchísimo mayor que la observada. Weinberg (<a href="#ref-weinberg1989">1989</a>) y Carroll (<a href="#ref-carroll2001">2001</a>) revisan el problema, que motiva buscar fuentes alternativas de la energía oscura. Los modelos de quintaesencia de Ratra y Peebles (<a href="#ref-ratra1988">1988</a>) y Caldwell et al. (<a href="#ref-caldwell1998">1998</a>) describen la energía oscura como un campo escalar con una $w$ que evoluciona.</p>
+<h3 id="objetos-con-interior-de-vacío">2.6. Objetos con interior de vacío</h3>
+<p>Mazur y Mottola (<a href="#ref-mazur2004">2004</a>) propusieron las <em>gravastars</em>: objetos que desde afuera son indistinguibles de un agujero negro, pero cuyo interior es una región de de Sitter, separada del exterior por una capa delgada de materia rígida. Son lo más parecido en la literatura a un nodo de la idea. Pero una gravastar aislada gravita desde afuera como cualquier masa; para que muchas actúen como energía oscura hace falta un mecanismo adicional.</p>
+<p>Croker y Weiner (<a href="#ref-croker2019">2019</a>) propusieron ese mecanismo: si el interior de los agujeros negros es de vacío, su masa podría crecer con la expansión, $M \propto a^{k_{\mathrm c}}$ (ecuación \eqref{eq:acople}). Farrah et al. (<a href="#ref-farrah2023">2023</a>) estudiaron el crecimiento de agujeros negros supermasivos en galaxias elípticas hasta $z \approx 2{,}5$, encontraron evidencia de un crecimiento acoplado a la expansión compatible con $k_{\mathrm c} \approx 3$ y propusieron a los agujeros negros como fuente astrofísica de la energía oscura. La propuesta fue discutida: Andrae y El-Badry (<a href="#ref-andrae2023">2023</a>) mostraron que, si las masas crecieran como $(1+z)^3$, los agujeros negros de los sistemas binarios Gaia BH1 y BH2 habrían nacido con masas muy probablemente por debajo del límite de Tolman–Oppenheimer–Volkoff.</p>
+<h2 id="sec:modelo">3. Modelo</h2>
+<h3 id="ecuaciones-de-friedmann">3.1. Ecuaciones de Friedmann</h3>
+<p>En un universo homogéneo e isótropo, las distancias entre galaxias escalan con el factor de escala $a(t)$, adimensional y igual a 1 hoy. El ritmo de expansión es $H = \dot a/a$, en $\mathrm{s^{-1}}$. Cada componente $i$ tiene una densidad de masa $\rho_i$ (en $\mathrm{kg\,m^{-3}}$) y una presión $p_i$ (en Pa). Las ecuaciones de Friedmann son</p>
+<div class="ecuacion">\begin{equation}\label{eq:friedmann1}
+H^2 = \frac{8\pi G}{3}\sum_i \rho_i - \frac{k c^2}{R_0^2\, a^2},
+\end{equation}</div>
+<div class="ecuacion">\begin{equation}\label{eq:friedmann2}
+\frac{\ddot a}{a} = -\frac{4\pi G}{3}\sum_i \left(\rho_i + \frac{3p_i}{c^2}\right),
+\end{equation}</div>
+<p>con $k \in \{-1, 0, 1\}$ el signo de la curvatura y $R_0$ el radio de curvatura hoy, en metros. Las unidades cierran: $G\rho$ tiene unidades de $\mathrm{m^3\,kg^{-1}\,s^{-2}\cdot kg\,m^{-3}} = \mathrm{s^{-2}}$, $c^2/R_0^2$ también, y $p/c^2$ tiene unidades de $\mathrm{kg\,m^{-1}\,s^{-2}/(m^2\,s^{-2})} = \mathrm{kg\,m^{-3}}$, como $\rho$.</p>
+<p>En la ecuación \eqref{eq:friedmann2} la presión cuenta tres veces, una por cada dirección del espacio. En la vida diaria no se nota: la presión atmosférica, $10^5$ Pa, es unas $10^{12}$ veces menor que la densidad de energía $\rho c^2$ del aire. En cosmología, con radiación o con energía del vacío, la presión es comparable a $\rho c^2$.</p>
+<h3 id="la-ecuación-de-estado">3.2. La ecuación de estado</h3>
+<p>La conservación de la energía en un universo que se expande da la ecuación del fluido,</p>
+<div class="ecuacion">\begin{equation}\label{eq:fluido}
+\dot\rho_i + 3H\left(\rho_i + \frac{p_i}{c^2}\right) = 0 ,
+\end{equation}</div>
+<p>con unidades de $\mathrm{kg\,m^{-3}\,s^{-1}}$ en cada término. Con una ecuación de estado $p_i = w_i \rho_i c^2$ y $w_i$ constante y adimensional, la solución es</p>
+<div class="ecuacion">\begin{equation}\label{eq:escala}
+\rho_i = \rho_{i,0}\, a^{-3(1+w_i)} .
+\end{equation}</div>
+<p>La materia ($w = 0$) se diluye como $a^{-3}$; la radiación ($w = 1/3$), como $a^{-4}$; la constante cosmológica ($w = -1$) no se diluye; y una componente con $w &lt; -1$, llamada <em>fantasma</em>, crece con la expansión. Con $p = w\rho c^2$, la combinación de la ecuación \eqref{eq:friedmann2} es $\rho(1 + 3w)$: la componente frena si $w &gt; -1/3$ y empuja si $w &lt; -1/3$. Ese es el resultado central del trabajo.</p>
+<p>En un universo homogéneo, una presión negativa no empuja nada hacia ningún lado, porque está en todas partes por igual y no hay diferencias de presión. Lo único que queda es su efecto gravitatorio, que con signo negativo es repulsivo.</p>
+<h3 id="forma-adimensional">3.3. Forma adimensional</h3>
+<p>Se definen los parámetros de densidad $\Omega_i = \rho_{i,0}/\rho_{\mathrm c}$, con $\rho_{\mathrm c} = 3H_0^2/(8\pi G)$, el de curvatura $\Omega_K = -kc^2/(R_0^2 H_0^2)$ y el tiempo adimensional $\tau = H_0 t$. Con $' = \mathrm d/\mathrm d\tau$, las ecuaciones \eqref{eq:friedmann1} y \eqref{eq:friedmann2} quedan</p>
+<div class="ecuacion">\begin{equation}\label{eq:adim}
+a'^2 = \sum_i \Omega_i\, a^{-1-3w_i} + \Omega_K, \qquad a'' = -\frac{a}{2}\sum_i \Omega_i (1 + 3w_i)\, a^{-3(1+w_i)},
+\end{equation}</div>
+<p>con $\sum_i \Omega_i + \Omega_K = 1$ en $a = 1$. Todas las cantidades son adimensionales. El modelo integra la segunda ecuación con el método de Runge–Kutta de cuarto orden (Runge <a href="#ref-runge1895">1895</a>), con paso adaptativo cerca de $a \to 0$, desde $a = 1$ hacia el pasado (para la edad) y hacia el futuro. Las componentes son materia, constante cosmológica y nodos con $w$ libre.</p>
+<h3 id="resultados-analíticos-para-contrastar">3.4. Resultados analíticos para contrastar</h3>
+<p>El parámetro de desaceleración, $q = -a\ddot a/\dot a^2$, vale hoy</p>
+<div class="ecuacion">\begin{equation}\label{eq:q0}
+q_0 = \frac12 \sum_i \Omega_i (1 + 3w_i).
+\end{equation}</div>
+<p>Con materia y nodos en un universo plano, $q_0 = 0$ cuando</p>
+<div class="ecuacion">\begin{equation}\label{eq:wcero}
+w_* = -\frac13\left(1 + \frac{\Omega_{\mathrm m}}{\Omega_{\mathrm n}}\right),
+\end{equation}</div>
+<p>que con $\Omega_{\mathrm m} = 0{,}3$ y $\Omega_{\mathrm n} = 0{,}7$ da $w_* = -0{,}476$. Entre $w_*$ y $-1/3$ los nodos empujan, pero no alcanza para compensar a la materia.</p>
+<p>La edad es $t_0 = \int_0^1 \mathrm{d}a/\dot a$. Para un universo plano con materia y constante cosmológica tiene forma cerrada (Ryden <a href="#ref-ryden2003">2003</a>):</p>
+<div class="ecuacion">\begin{equation}\label{eq:edad}
+H_0 t_0 = \frac{2}{3\sqrt{\Omega_\Lambda}}\, \operatorname{arsinh}\sqrt{\frac{\Omega_\Lambda}{\Omega_{\mathrm m}}},
+\end{equation}</div>
+<p>y para un universo de solo materia, $H_0 t_0 = 2/3$. La aceleración empieza cuando el término de la materia en \eqref{eq:adim} iguala al de $\Lambda$ con su factor $-2$, y $\Lambda$ domina la densidad cuando las dos densidades se igualan:</p>
+<div class="ecuacion">\begin{equation}\label{eq:transiciones}
+a_{\mathrm{acel}} = \left(\frac{\Omega_{\mathrm m}}{2\Omega_\Lambda}\right)^{1/3}, \qquad a_{\mathrm{igual}} = \left(\frac{\Omega_{\mathrm m}}{\Omega_\Lambda}\right)^{1/3}.
+\end{equation}</div>
+<h3 id="el-universo-estático-y-su-inestabilidad">3.5. El universo estático y su inestabilidad</h3>
+<p>En el caso estático no hay $H_0$; se usan unidades de tiempo en las que $8\pi G/3 = 1$, de modo que las densidades tienen unidades de tiempo$^{-2}$ y $K = kc^2/R_0^2$ también. Con materia y $\Lambda$, $a'' = -\rho_{\mathrm m}/(2a^2) + \rho_\Lambda a$, y el equilibrio en $a = 1$ exige $a'' = 0$ y $a' = 0$:</p>
+<div class="ecuacion">\begin{equation}\label{eq:einstein}
+\rho_{\mathrm m} = 2\rho_\Lambda, \qquad \rho_{\mathrm m} + \rho_\Lambda = K \quad\Rightarrow\quad \rho_{\mathrm m} = \tfrac23,\ \rho_\Lambda = \tfrac13 \ \text{ para } K = 1.
+\end{equation}</div>
+<p>Linealizando alrededor de $a = 1$, $\delta a'' = (\rho_{\mathrm m} + \rho_\Lambda)\,\delta a = \delta a$. Una perturbación que empieza con $\delta a = 0$ y velocidad $\delta v$ crece como</p>
+<div class="ecuacion">\begin{equation}\label{eq:eddington}
+\delta a(\tau) = \delta v \sinh\tau ,
+\end{equation}</div>
+<p>la inestabilidad de Eddington con tiempo de crecimiento 1 en estas unidades.</p>
+<h3 id="acoplamiento-cosmológico-y-gran-desgarro">3.6. Acoplamiento cosmológico y gran desgarro</h3>
+<p>Si una población de objetos compactos tiene masas que crecen como $M \propto a^{k_{\mathrm c}}$ y su número por volumen comóvil se conserva, su densidad va como $a^{k_{\mathrm c} - 3}$. Comparando con \eqref{eq:escala},</p>
+<div class="ecuacion">\begin{equation}\label{eq:acople}
+w = -\frac{k_{\mathrm c}}{3},
+\end{equation}</div>
+<p>de modo que $k_{\mathrm c} = 3$ equivale a una constante cosmológica. Con energía fantasma ($w &lt; -1$) el ritmo de expansión diverge en un tiempo finito. Caldwell et al. (<a href="#ref-caldwell2003">2003</a>) estimaron el tiempo que falta hasta ese <em>gran desgarro</em> como</p>
+<div class="ecuacion">\begin{equation}\label{eq:desgarro}
+t_{\mathrm{rip}} - t_0 \approx \frac23\, |1 + w|^{-1}\, H_0^{-1}\, (1 - \Omega_{\mathrm m})^{-1/2},
+\end{equation}</div>
+<p>con unidades de tiempo a través de $H_0^{-1}$.</p>
+<h2 id="sec:resultados">4. Resultados</h2>
+<p>Todas las cifras salen de <code>paper/figuras/generar.js</code>. Las edades en años usan $H_0 = 70$ km/s/Mpc, es decir, $1/H_0 = 13{,}97$ mil millones de años. En todos los casos planos, la edad obtenida integrando con Runge–Kutta coincide con la cuadratura directa de $\int \mathrm{d}a/\dot a$ en los cuatro dígitos informados, y para $\Lambda$CDM coincide con la ecuación \eqref{eq:edad}.</p>
+<h3 id="nodos-que-empujan-y-nodos-que-frenan">4.1. Nodos que empujan y nodos que frenan</h3>
+<p>La tabla <a href="#tab:escenarios">1</a> resume los escenarios con $\Omega_{\mathrm m} = 0{,}3$. Con nodos de $w = -1$ (escenario A), el resultado es idéntico al de $\Lambda$CDM: $q_0 = -0{,}55$ y una edad de $0{,}964/H_0$, 13,47 mil millones de años. En un modelo homogéneo, una componente queda caracterizada por su densidad de hoy y su $w$; dos componentes con los mismos valores son indistinguibles. Si los nodos tienen $w = -1$, son una constante cosmológica.</p>
+<figure class="tabla" id="tab:escenarios"><figcaption><strong>Tabla 1.</strong> Parámetro de desaceleración y edad para $\Omega_{\mathrm m} = 0{,}3$ y $\Omega_{\mathrm n}$ o $\Omega_\Lambda = 0{,}7$, con $H_0 = 70$ km/s/Mpc.</figcaption><div class="desliza"><table><thead><tr><th>Escenario</th><th>$w$ de los nodos</th><th>$q_0$</th><th>$H_0 t_0$</th><th>Edad (miles de millones de años)</th></tr></thead><tbody><tr><td>$\Lambda$CDM</td><td>—</td><td>$-0{,}55$</td><td>0,964</td><td>13,47</td></tr><tr><td>A: los nodos empujan</td><td>$-1$</td><td>$-0{,}55$</td><td>0,964</td><td>13,47</td></tr><tr><td>Nodos débiles</td><td>$-0{,}2$</td><td>0,29</td><td>0,757</td><td>10,58</td></tr><tr><td>B: los nodos frenan</td><td>$1/3$</td><td>0,85</td><td>0,528</td><td>7,38</td></tr><tr><td>Solo materia ($\Omega_{\mathrm m} = 1$)</td><td>—</td><td>0,50</td><td>0,667</td><td>9,31</td></tr></tbody></table></div></figure>
+<p>Con nodos de presión positiva ($w = 1/3$, escenario B) la expansión frena ($q_0 = 0{,}85$) y la edad baja a 7,38 mil millones de años. Es menos que la edad de la estrella HD 140283, $14{,}46 \pm 0{,}31$ mil millones de años sin contar las incertezas de los modelos estelares (Bond et al. <a href="#ref-bond2013">2013</a>): un universo así no podría contener sus estrellas más viejas. La figura <a href="#fig:escenarios">1</a> muestra el factor de escala en el tiempo para estos escenarios; las figuras <a href="#fig:q0">2</a> y <a href="#fig:edad">3</a>, cómo cambian $q_0$ y la edad con $w$. El cambio de «empujan» a «frenan» ocurre en $w = -1/3$; el de expansión acelerada a frenada, en $w_* = -0{,}476$, como predice la ecuación \eqref{eq:wcero}.</p>
+<figure id="fig:escenarios"><img src="paper/figuras/escenarios.svg" alt="Factor de escala en función del tiempo desde hoy, en unidades de $1/H_0$, para $\Lambda$CDM (idéntico al escenario A), nodos con $w = -0{,}2$, nodos con $w = 1/3$ (escenario B) y un universo de solo materia. El punto donde cada curva toca $a = 0$ es el big bang: los universos que frenan más son más jóvenes." loading="lazy"><figcaption><strong>Figura 1.</strong> Factor de escala en función del tiempo desde hoy, en unidades de $1/H_0$, para $\Lambda$CDM (idéntico al escenario A), nodos con $w = -0{,}2$, nodos con $w = 1/3$ (escenario B) y un universo de solo materia. El punto donde cada curva toca $a = 0$ es el big bang: los universos que frenan más son más jóvenes.</figcaption></figure>
+<figure id="fig:q0"><img src="paper/figuras/desaceleracion.svg" alt="Parámetro de desaceleración hoy en función de la ecuación de estado de los nodos, ecuación \eqref{eq:q0}, con $\Omega_{\mathrm m} = 0{,}3$ y $\Omega_{\mathrm n} = 0{,}7$." loading="lazy"><figcaption><strong>Figura 2.</strong> Parámetro de desaceleración hoy en función de la ecuación de estado de los nodos, ecuación \eqref{eq:q0}, con $\Omega_{\mathrm m} = 0{,}3$ y $\Omega_{\mathrm n} = 0{,}7$.</figcaption></figure>
+<figure id="fig:edad"><img src="paper/figuras/edad.svg" alt="Edad del universo en función de la ecuación de estado de los nodos, por integración numérica y por cuadratura, con $H_0 = 70$ km/s/Mpc. La línea horizontal es la edad que infiere Planck (Planck Collaboration 2020)." loading="lazy"><figcaption><strong>Figura 3.</strong> Edad del universo en función de la ecuación de estado de los nodos, por integración numérica y por cuadratura, con $H_0 = 70$ km/s/Mpc. La línea horizontal es la edad que infiere Planck (Planck Collaboration <a href="#ref-planck2020">2020</a>).</figcaption></figure>
+<h3 id="las-eras-de-lambda-cdm">4.2. Las eras de $\Lambda$CDM</h3>
+<p>Con $\Omega_{\mathrm m} = 0{,}3$ y $\Omega_\Lambda = 0{,}7$, la ecuación \eqref{eq:transiciones} da $a_{\mathrm{acel}} = 0{,}598$ ($z = 0{,}671$) y $a_{\mathrm{igual}} = 0{,}754$ ($z = 0{,}326$). Integrando, la aceleración empezó hace 6,14 mil millones de años y $\Lambda$ domina la densidad desde hace 3,66 mil millones. La aceleración empezó antes de que $\Lambda$ dominara porque su presión cuenta tres veces. Hacia el futuro, en $4/H_0$ el universo es 30,3 veces más grande que hoy. Como la edad escala con $1/H_0$, la de $\Lambda$CDM sería de 13,99 mil millones de años con $H_0 = 67{,}4$ y de 12,91 con $H_0 = 73$: la tensión de Hubble es, en parte, una tensión sobre la edad.</p>
+<h3 id="el-universo-de-einstein">4.3. El universo de Einstein</h3>
+<p>Con $\rho_{\mathrm m} = 2/3$, $\rho_\Lambda = 1/3$ y $K = 1$, el universo está quieto. Con una velocidad inicial de $+0{,}001$, se queda casi quieto un buen rato y después se escapa: llega a $a = 3$ en $\tau = 8{,}76$. Con $-0{,}001$ recolapsa en $\tau = 7{,}11$. Sin perturbación se queda quieto. La linealización \eqref{eq:eddington} predice que la perturbación llega a $\delta a = 1$ en $\tau = \operatorname{arsinh}(1000) = 7{,}60$, de acuerdo con la escala de tiempo de la integración (figura <a href="#fig:einstein">4</a>).</p>
+<figure id="fig:einstein"><img src="paper/figuras/einstein.svg" alt="El universo estático de Einstein con perturbaciones de la velocidad inicial de $\pm 0{,}001$ y sin perturbación, y la predicción lineal \eqref{eq:eddington}. Tiempo en unidades con $8\pi G/3 = 1$." loading="lazy"><figcaption><strong>Figura 4.</strong> El universo estático de Einstein con perturbaciones de la velocidad inicial de $\pm 0{,}001$ y sin perturbación, y la predicción lineal \eqref{eq:eddington}. Tiempo en unidades con $8\pi G/3 = 1$.</figcaption></figure>
+<h3 id="el-gran-desgarro">4.4. El gran desgarro</h3>
+<p>Con nodos fantasma la curva del factor de escala se dispara (figura <a href="#fig:desgarro">5</a>). Con $w = -1{,}5$, la ecuación \eqref{eq:desgarro} da $t_{\mathrm{rip}} - t_0 = 1{,}594/H_0$, unos 22,3 mil millones de años, y la integración alcanza $a = 10^6$ en $1{,}552/H_0$. Con $w = -1{,}2$, la fórmula da $3{,}984/H_0$ y la integración llega a $a = 10^6$ en $3{,}865/H_0$. La integración se detiene antes de la divergencia, por el tope numérico, así que los tiempos son una cota inferior compatible con la fórmula. Con $w = -1$, en cambio, no hay desgarro: la expansión tiende a una exponencial y el futuro es el enfriamiento lento que describen Adams y Laughlin (<a href="#ref-adams1997">1997</a>).</p>
+<figure id="fig:desgarro"><img src="paper/figuras/desgarro.svg" alt="Factor de escala hacia el futuro, en escala logarítmica, para nodos con $w = -1{,}5$, $-1{,}2$ y $-1$. Las líneas verticales marcan el tiempo del gran desgarro según la ecuación \eqref{eq:desgarro}." loading="lazy"><figcaption><strong>Figura 5.</strong> Factor de escala hacia el futuro, en escala logarítmica, para nodos con $w = -1{,}5$, $-1{,}2$ y $-1$. Las líneas verticales marcan el tiempo del gran desgarro según la ecuación \eqref{eq:desgarro}.</figcaption></figure>
+<h2 id="sec:discusion">5. Discusión y limitaciones</h2>
+<h3 id="las-versiones-de-la-idea">5.1. Las versiones de la idea</h3>
+<p><strong>Versión A: los nodos empujan.</strong> Los nodos son objetos compactos con interior de vacío, como gravastars o agujeros negros acoplados, cuya contribución cosmológica se comporta como $w \approx -1$. Son la causa de la aceleración. Es consistente con la relatividad general y con las observaciones, y ofrece una explicación astrofísica de la energía oscura. Su punto débil es el mecanismo de acoplamiento, que no está establecido y que las binarias de Gaia ponen en tensión (Andrae y El-Badry <a href="#ref-andrae2023">2023</a>). Tiene una consecuencia interesante: la expansión dependería de la población de agujeros negros.</p>
+<p><strong>Versión B: los nodos frenan.</strong> Los nodos tienen presión positiva o nula. Pero entonces pierden el ingrediente central de la idea, la presión negativa, y chocan con dos observaciones: la aceleración y la edad de las estrellas más viejas (tabla <a href="#tab:escenarios">1</a>).</p>
+<p><strong>Versión C: el equilibrio.</strong> La idea sugería que los nodos mantuvieran el universo en equilibrio con retroalimentación. Eso se parece al universo de Einstein, pero el equilibrio tendría que ser estable, y la ecuación \eqref{eq:eddington} muestra que con $w$ constante no lo es. Haría falta una $w$ que reaccione al estado del universo. Un modelo de juguete posible, que este trabajo no implementa y que se plantea como hipótesis, es</p>
+<div class="ecuacion">\begin{equation}\label{eq:retro}
+w(a) = -\frac13 + \beta_{\mathrm f}\,(a - a_*), \qquad \beta_{\mathrm f} &gt; 0,
+\end{equation}</div>
+<p>con $a_*$ el tamaño de equilibrio: si el universo es más grande que $a_*$, los nodos frenan; si es más chico, empujan. Una $w$ que depende de $a$ obliga a integrar la ecuación del fluido \eqref{eq:fluido} junto con $a(\tau)$, porque la densidad deja de ser una potencia simple. Y, sobre todo, hay que explicar qué física hace que la presión de unos objetos dependa del tamaño del universo. Sin ese mecanismo, la ecuación \eqref{eq:retro} es una descripción, no una explicación. Existen universos estáticos estables en otros marcos, como el universo emergente de Ellis y Maartens (<a href="#ref-ellis2004">2004</a>), pero no en relatividad general con fluidos simples.</p>
+<h3 id="preguntas-que-una-versión-seria-debe-responder">5.2. Preguntas que una versión seria debe responder</h3>
+<p>Cualquier versión de la idea, como ciencia ficción dura o como esbozo teórico, tiene que responder: qué $w$ tienen los nodos; cómo se distribuyen, porque si son pocos y muy separados el tratamiento como fluido falla; de dónde sale su energía si no se diluye; qué gravita desde afuera, porque un nodo aislado atrae como una masa positiva; si la edad del universo resultante supera la de sus estrellas; si el equilibrio, si lo hay, es estable; y qué se observaría, por ejemplo una $w$ distinta de $-1$ o una relación entre la población de agujeros negros y la expansión.</p>
+<h3 id="limitaciones-del-modelo">5.3. Limitaciones del modelo</h3>
+<ul><li>El universo es homogéneo: los nodos se tratan como un fluido, no como objetos localizados.</li><li>La ecuación de estado de cada componente es constante. Una $w$ variable, como sugieren los resultados de DESI, queda fuera.</li><li>No se ajustan datos: los escenarios son ilustrativos, con parámetros redondeados.</li><li>No hay radiación en los escenarios; la era temprana dominada por radiación cambia la edad en una fracción muy chica, pero no se calcula aquí.</li><li>La retroalimentación de la versión C no está implementada.</li></ul>
+<h2 id="sec:conclusiones">6. Conclusiones y trabajo futuro</h2>
+<p>La pregunta de la idea, si unos nodos ultradensos con presión negativa frenan o empujan la expansión, tiene una respuesta clara en la relatividad general: empujan. La presión gravita, y una presión más negativa que $-1/3$ de la densidad de energía convierte la gravedad en repulsión. Nodos con $w = -1$ son una constante cosmológica; nodos que frenan dan un universo más joven que sus estrellas; y el equilibrio de Einstein existe pero es inestable. Las propuestas de gravastars y agujeros negros acoplados a la expansión son la versión seria de la idea, y su efecto, si existe, es empujar.</p>
+<p>El trabajo futuro tiene dos partes: agregar una ecuación de estado que cambie con el tiempo, para comparar con los resultados de DESI, e implementar una retroalimentación como la de la ecuación \eqref{eq:retro} para encontrar el valor mínimo de $\beta_{\mathrm f}$ que estabiliza el universo y qué edades produce.</p>
+<h2 id="declaración-de-uso-de-ia">Declaración de uso de IA</h2>
+<p>Este trabajo se redactó con asistencia de Claude (Anthropic), un modelo de lenguaje, a partir de una guía previa del autor. El modelo propuso la estructura, la redacción, los chequeos de unidades y analíticos y el script que genera las figuras; el alcance y las decisiones son del autor, que es responsable del contenido. Las referencias se verificaron contra Crossref, Open Library y las páginas citadas con <code>paper/verificar_bib.py</code>, y todas las cifras de la sección <a href="#sec:resultados">4</a> salen de <code>paper/figuras/generar.js</code>.</p>
+<h2 id="referencias">Referencias</h2><ol class="refs"><li id="ref-adams1997">Adams, F. C. y Laughlin, G. (1997). A dying universe: The long-term fate and evolution of astrophysical objects. <i>Reviews of Modern Physics</i>, <i>69</i>(2), 337–372. <a href="https://doi.org/10.1103/RevModPhys.69.337">https://doi.org/10.1103/RevModPhys.69.337</a></li><li id="ref-andrae2023">Andrae, R. y El-Badry, K. (2023). Constraints on the cosmological coupling of black holes from Gaia. <i>Astronomy &amp; Astrophysics</i>, <i>673</i>, L10. <a href="https://doi.org/10.1051/0004-6361/202346350">https://doi.org/10.1051/0004-6361/202346350</a></li><li id="ref-bond2013">Bond, H. E., Nelan, E. P., VandenBerg, D. A., Schaefer, G. H. y Harmer, D. (2013). HD 140283: A star in the solar neighborhood that formed shortly after the Big Bang. <i>The Astrophysical Journal Letters</i>, <i>765</i>(1), L12. <a href="https://doi.org/10.1088/2041-8205/765/1/L12">https://doi.org/10.1088/2041-8205/765/1/L12</a></li><li id="ref-caldwell1998">Caldwell, R. R., Dave, R. y Steinhardt, P. J. (1998). Cosmological imprint of an energy component with general equation of state. <i>Physical Review Letters</i>, <i>80</i>(8), 1582–1585. <a href="https://doi.org/10.1103/PhysRevLett.80.1582">https://doi.org/10.1103/PhysRevLett.80.1582</a></li><li id="ref-caldwell2003">Caldwell, R. R., Kamionkowski, M. y Weinberg, N. N. (2003). Phantom energy: Dark energy with w &lt; −1 causes a cosmic doomsday. <i>Physical Review Letters</i>, <i>91</i>(7), 071301. <a href="https://doi.org/10.1103/PhysRevLett.91.071301">https://doi.org/10.1103/PhysRevLett.91.071301</a></li><li id="ref-carroll2001">Carroll, S. M. (2001). The cosmological constant. <i>Living Reviews in Relativity</i>, <i>4</i>(1), 1. <a href="https://doi.org/10.12942/lrr-2001-1">https://doi.org/10.12942/lrr-2001-1</a></li><li id="ref-cole2005">Cole, S., Percival, W. J., Peacock, J. A., Norberg, P., Baugh, C. M., Frenk, C. S. et al. (2005). The 2dF Galaxy Redshift Survey: Power-spectrum analysis of the final data set and cosmological implications. <i>Monthly Notices of the Royal Astronomical Society</i>, <i>362</i>(2), 505–534. <a href="https://doi.org/10.1111/j.1365-2966.2005.09318.x">https://doi.org/10.1111/j.1365-2966.2005.09318.x</a></li><li id="ref-croker2019">Croker, K. S. y Weiner, J. L. (2019). Implications of symmetry and pressure in Friedmann cosmology. I. Formalism. <i>The Astrophysical Journal</i>, <i>882</i>(1), 19. <a href="https://doi.org/10.3847/1538-4357/ab32da">https://doi.org/10.3847/1538-4357/ab32da</a></li><li id="ref-debernardis2000">de Bernardis, P., Ade, P. A. R., Bock, J. J., Bond, J. R., Borrill, J., Boscaleri, A. et al. (2000). A flat Universe from high-resolution maps of the cosmic microwave background radiation. <i>Nature</i>, <i>404</i>(6781), 955–959. <a href="https://doi.org/10.1038/35010035">https://doi.org/10.1038/35010035</a></li><li id="ref-desitter1917">de Sitter, W. (1917). On Einstein&#x27;s theory of gravitation and its astronomical consequences. Third paper. <i>Monthly Notices of the Royal Astronomical Society</i>, <i>78</i>(1), 3–28. <a href="https://doi.org/10.1093/mnras/78.1.3">https://doi.org/10.1093/mnras/78.1.3</a></li><li id="ref-desi2025a">DESI Collaboration (2025). DESI 2024 VI: Cosmological constraints from the measurements of baryon acoustic oscillations. <i>Journal of Cosmology and Astroparticle Physics</i>, <i>2025</i>(02), 021. <a href="https://doi.org/10.1088/1475-7516/2025/02/021">https://doi.org/10.1088/1475-7516/2025/02/021</a></li><li id="ref-desi2025b">DESI Collaboration (2025). DESI DR2 results. II. Measurements of baryon acoustic oscillations and cosmological constraints. <i>Physical Review D</i>, <i>112</i>(8). <a href="https://doi.org/10.1103/tr6y-kpc6">https://doi.org/10.1103/tr6y-kpc6</a></li><li id="ref-eddington1930">Eddington, A. S. (1930). On the instability of Einstein&#x27;s spherical world. <i>Monthly Notices of the Royal Astronomical Society</i>, <i>90</i>(7), 668–678. <a href="https://doi.org/10.1093/mnras/90.7.668">https://doi.org/10.1093/mnras/90.7.668</a></li><li id="ref-eisenstein2005">Eisenstein, D. J., Zehavi, I., Hogg, D. W., Scoccimarro, R., Blanton, M. R., Nichol, R. C. et al. (2005). Detection of the baryon acoustic peak in the large-scale correlation function of SDSS luminous red galaxies. <i>The Astrophysical Journal</i>, <i>633</i>(2), 560–574. <a href="https://doi.org/10.1086/466512">https://doi.org/10.1086/466512</a></li><li id="ref-ellis2004">Ellis, G. F. R. y Maartens, R. (2004). The emergent universe: Inflationary cosmology with no singularity. <i>Classical and Quantum Gravity</i>, <i>21</i>(1), 223–232. <a href="https://doi.org/10.1088/0264-9381/21/1/015">https://doi.org/10.1088/0264-9381/21/1/015</a></li><li id="ref-farrah2023">Farrah, D., Croker, K. S., Zevin, M., Tarlé, G., Faraoni, V., Petty, S. et al. (2023). Observational evidence for cosmological coupling of black holes and its implications for an astrophysical source of dark energy. <i>The Astrophysical Journal Letters</i>, <i>944</i>(2), L31. <a href="https://doi.org/10.3847/2041-8213/acb704">https://doi.org/10.3847/2041-8213/acb704</a></li><li id="ref-friedmann1922">Friedman, A. (1922). Über die Krümmung des Raumes. <i>Zeitschrift für Physik</i>, <i>10</i>(1), 377–386. <a href="https://doi.org/10.1007/BF01332580">https://doi.org/10.1007/BF01332580</a></li><li id="ref-guth1981">Guth, A. H. (1981). Inflationary universe: A possible solution to the horizon and flatness problems. <i>Physical Review D</i>, <i>23</i>(2), 347–356. <a href="https://doi.org/10.1103/PhysRevD.23.347">https://doi.org/10.1103/PhysRevD.23.347</a></li><li id="ref-hawking1973">Hawking, S. W. y Ellis, G. F. R. (1973). <i>The Large Scale Structure of Space-Time</i>. Cambridge University Press. <a href="https://doi.org/10.1017/CBO9780511524646">https://doi.org/10.1017/CBO9780511524646</a></li><li id="ref-hubble1929">Hubble, E. (1929). A relation between distance and radial velocity among extra-galactic nebulae. <i>Proceedings of the National Academy of Sciences</i>, <i>15</i>(3), 168–173. <a href="https://doi.org/10.1073/pnas.15.3.168">https://doi.org/10.1073/pnas.15.3.168</a></li><li id="ref-lemaitre1931">Lemaître, G. (1931). A homogeneous universe of constant mass and increasing radius accounting for the radial velocity of extra-galactic nebulae. <i>Monthly Notices of the Royal Astronomical Society</i>, <i>91</i>(5), 483–490. <a href="https://doi.org/10.1093/mnras/91.5.483">https://doi.org/10.1093/mnras/91.5.483</a></li><li id="ref-mazur2004">Mazur, P. O. y Mottola, E. (2004). Gravitational vacuum condensate stars. <i>Proceedings of the National Academy of Sciences</i>, <i>101</i>(26), 9545–9550. <a href="https://doi.org/10.1073/pnas.0402717101">https://doi.org/10.1073/pnas.0402717101</a></li><li id="ref-penzias1965">Penzias, A. A. y Wilson, R. W. (1965). A measurement of excess antenna temperature at 4080 Mc/s. <i>The Astrophysical Journal</i>, <i>142</i>, 419–421. <a href="https://doi.org/10.1086/148307">https://doi.org/10.1086/148307</a></li><li id="ref-perlmutter1999">Perlmutter, S., Aldering, G., Goldhaber, G., Knop, R. A., Nugent, P., Castro, P. G. et al. (1999). Measurements of Ω and Λ from 42 high-redshift supernovae. <i>The Astrophysical Journal</i>, <i>517</i>(2), 565–586. <a href="https://doi.org/10.1086/307221">https://doi.org/10.1086/307221</a></li><li id="ref-phillips1993">Phillips, M. M. (1993). The absolute magnitudes of Type IA supernovae. <i>The Astrophysical Journal Letters</i>, <i>413</i>, L105–L108. <a href="https://doi.org/10.1086/186970">https://doi.org/10.1086/186970</a></li><li id="ref-planck2020">Planck Collaboration (2020). Planck 2018 results. VI. Cosmological parameters. <i>Astronomy &amp; Astrophysics</i>, <i>641</i>, A6. <a href="https://doi.org/10.1051/0004-6361/201833910">https://doi.org/10.1051/0004-6361/201833910</a></li><li id="ref-ratra1988">Ratra, B. y Peebles, P. J. E. (1988). Cosmological consequences of a rolling homogeneous scalar field. <i>Physical Review D</i>, <i>37</i>(12), 3406–3427. <a href="https://doi.org/10.1103/PhysRevD.37.3406">https://doi.org/10.1103/PhysRevD.37.3406</a></li><li id="ref-raychaudhuri1955">Raychaudhuri, A. (1955). Relativistic cosmology. I. <i>Physical Review</i>, <i>98</i>(4), 1123–1126. <a href="https://doi.org/10.1103/PhysRev.98.1123">https://doi.org/10.1103/PhysRev.98.1123</a></li><li id="ref-riess1998">Riess, A. G., Filippenko, A. V., Challis, P., Clocchiatti, A., Diercks, A., Garnavich, P. M. et al. (1998). Observational evidence from supernovae for an accelerating universe and a cosmological constant. <i>The Astronomical Journal</i>, <i>116</i>(3), 1009–1038. <a href="https://doi.org/10.1086/300499">https://doi.org/10.1086/300499</a></li><li id="ref-riess2022">Riess, A. G., Yuan, W., Macri, L. M., Scolnic, D., Brout, D., Casertano, S. et al. (2022). A comprehensive measurement of the local value of the Hubble constant with 1 km s−1 Mpc−1 uncertainty from the Hubble Space Telescope and the SH0ES team. <i>The Astrophysical Journal Letters</i>, <i>934</i>(1), L7. <a href="https://doi.org/10.3847/2041-8213/ac5c5b">https://doi.org/10.3847/2041-8213/ac5c5b</a></li><li id="ref-runge1895">Runge, C. (1895). Ueber die numerische Auflösung von Differentialgleichungen. <i>Mathematische Annalen</i>, <i>46</i>(2), 167–178. <a href="https://doi.org/10.1007/BF01446807">https://doi.org/10.1007/BF01446807</a></li><li id="ref-ryden2003">Ryden, B. (2003). <i>Introduction to Cosmology</i>. Addison-Wesley. <a href="https://openlibrary.org/works/OL8446280W">https://openlibrary.org/works/OL8446280W</a></li><li id="ref-starobinsky1980">Starobinsky, A. A. (1980). A new type of isotropic cosmological models without singularity. <i>Physics Letters B</i>, <i>91</i>(1), 99–102. <a href="https://doi.org/10.1016/0370-2693(80)90670-X">https://doi.org/10.1016/0370-2693(80)90670-X</a></li><li id="ref-weinberg1989">Weinberg, S. (1989). The cosmological constant problem. <i>Reviews of Modern Physics</i>, <i>61</i>(1), 1–23. <a href="https://doi.org/10.1103/RevModPhys.61.1">https://doi.org/10.1103/RevModPhys.61.1</a></li><li id="ref-zeldovich1968">Zel&#x27;dovich, Y. B. (1968). The cosmological constant and the theory of elementary particles. <i>Soviet Physics Uspekhi</i>, <i>11</i>(3), 381–393. <a href="https://doi.org/10.1070/PU1968v011n03ABEH003927">https://doi.org/10.1070/PU1968v011n03ABEH003927</a></li></ol>
+<footer>
+<p>Texto, figuras y PDF bajo licencia <a href="https://creativecommons.org/licenses/by/4.0/deed.es">CC BY 4.0</a>: podés compartirlo y adaptarlo citando al autor. El código que genera las figuras está bajo licencia MIT. Esta página se genera a partir de <code>paper/paper.tex</code>.</p>
+</footer>
+</main>
 </body>
 </html>
